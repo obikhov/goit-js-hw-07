@@ -1,30 +1,18 @@
 
-const loginForm = document.querySelector('.login-form');
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215)
+    .toString(16)
+    .padStart(6, 0)}`;
+}
 
+const body = document.body;
+const colorSpan = document.querySelector('.color');
+const changeColorButton = document.querySelector('.change-color');
 
-loginForm.addEventListener('submit', event => {
+changeColorButton.addEventListener('click', () => {
 
-  event.preventDefault();
-  
+  const randomColor = getRandomHexColor();
+  body.style.backgroundColor = randomColor;
 
-  const email = event.target.elements.email.value.trim();
-  const password = event.target.elements.password.value.trim();
-
- 
-  if (!email || !password) {
-    alert('All form fields must be filled in');
-    return;
-  }
-
- 
-  const formData = {
-    email: email,
-    password: password,
-  };
-
-
-  console.log(formData);
-
-  
-  loginForm.reset();
+  colorSpan.textContent = randomColor;
 });
